@@ -1,0 +1,7 @@
+{
+  "name": "phone-blade",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
