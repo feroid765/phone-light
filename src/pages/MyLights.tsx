@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { IonContent, IonHeader, IonLabel, IonPage, IonTitle, IonToolbar, IonItem } from '@ionic/react';
+import { IonContent, IonHeader, IonLabel, IonPage, IonTitle, IonToolbar, IonItem, IonIcon } from '@ionic/react';
+import { addOutline } from 'ionicons/icons';
 import StickCollection from '../models/StickCollection';
 
 const MyLights: React.FC = () => {
@@ -15,7 +16,8 @@ const MyLights: React.FC = () => {
       <IonContent fullscreen>
         {myLightsData.map(ml => ml.getComponent())}
         <IonItem>
-          <IonLabel>
+          <IonIcon icon={addOutline} style={{verticalAlign: true}}/>
+          <IonLabel style={{verticalAlign: true}}>
             추가하기
           </IonLabel>
         </IonItem>
