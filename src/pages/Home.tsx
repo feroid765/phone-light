@@ -12,12 +12,8 @@ const Home: React.FC = () => {
     <IonTabs>
       <IonRouterOutlet>
         <Redirect exact from="/home" to="/home/my-lights"/>
-        <Route exact path="/home/my-lights">
-          <MyLights/>
-        </Route>
-        <Route exact path="/home/other-lights">
-          <OtherLights/>
-        </Route>
+        <Route exact path="/home/my-lights" component={MyLights}/>
+        <Route exact path="/home/other-lights" component={OtherLights}/>
       </IonRouterOutlet>
       <IonTabBar slot="bottom">
         <IonTabButton tab="tab1" href="/home/my-lights">

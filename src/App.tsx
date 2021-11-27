@@ -1,10 +1,10 @@
 import { Redirect, Route } from 'react-router-dom';
 import { IonApp, IonRouterOutlet, IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import React, {CSSProperties} from 'react';
+import React from 'react';
 import BladeCore from './pages/BladeCore';
-import { sparklesOutline, globeOutline } from 'ionicons/icons';
 import Home from './pages/Home';
+import MakeNewLight from './pages/MakeNewLight';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -29,12 +29,10 @@ const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
       <IonRouterOutlet>
-        <Route path="/home">
-          <Home/>
-        </Route>
-        <Route exact path="/core">
-          <BladeCore/>
-        </Route>
+        <Redirect exact from="/" to="/home"/>
+        <Route path="/home" component={Home}/>
+        <Route exact path="/core" component={BladeCore}/>
+        <Route exact path="/make" component={MakeNewLight}/>
       </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>

@@ -1,14 +1,15 @@
-import color from 'color';
-import { Genre } from './Genre';
+import {Color} from 'react-color';
 
 class Stick{
+    ID: number;
+    Name: string;
+    Color: Color;
+    
     constructor(
-        readonly ID: number,
-        readonly Genre: Genre,
-        readonly Name: string,
-        readonly NameKor: string,
-        readonly Color: color
-    ){}
+        ID: number,
+        Name: string,
+        Color: Color,
+    ){this.ID=ID;this.Name=Name;this.Color=Color;}
 }
 
 export default Stick;

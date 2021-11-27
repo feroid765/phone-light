@@ -4,7 +4,7 @@ import { addOutline } from 'ionicons/icons';
 import StickCollection from '../models/StickCollection';
 
 const MyLights: React.FC = () => {
-  const [myLightsData, setMyLightsData] = useState<StickCollection[]>([new StickCollection(1, "러브라이브", []), new StickCollection(2, "아이돌마스터", [])]);
+  const [myLightsData, setMyLightsData] = useState<StickCollection[]>([new StickCollection("1", "러브라이브", []), new StickCollection("2", "아이돌마스터", [])]);
 
   return (
     <IonPage>
@@ -15,10 +15,10 @@ const MyLights: React.FC = () => {
       </IonHeader>
       <IonContent fullscreen>
         {myLightsData.map(ml => ml.getComponent())}
-        <IonItem>
+        <IonItem href="/make">
           <IonIcon icon={addOutline} style={{verticalAlign: true}}/>
           <IonLabel style={{verticalAlign: true}}>
-            추가하기
+            만들기
           </IonLabel>
         </IonItem>
       </IonContent>

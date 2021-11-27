@@ -1,0 +1,15 @@
+.colorChip{
+    width: 2em;
+    height: 2em;
+    margin: 0.5em;
+}
+
+ion-icon{
+    width: 2em;
+    height: 2em;
+}
+
+ion-list-header, .inputLabel{
+    font-size: medium !important;
+    font-weight: bold;
+}

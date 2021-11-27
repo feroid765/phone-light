@@ -4,7 +4,7 @@ import Stick from './Stick';
 
 class StickCollection{
     constructor(
-        readonly ID: number,
+        readonly ID: string,
         readonly Name: string,
         readonly StickList: Stick[]
     ){};
