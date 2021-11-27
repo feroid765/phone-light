@@ -4,7 +4,7 @@ import { IonReactRouter } from '@ionic/react-router';
 import React from 'react';
 import BladeCore from './pages/BladeCore';
 import Home from './pages/Home';
-import MakeNewLight from './pages/MakeNewLight';
+import MakeNewStick from './pages/MakeNewStick';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -32,7 +32,7 @@ const App: React.FC = () => (
         <Redirect exact from="/" to="/home"/>
         <Route path="/home" component={Home}/>
         <Route exact path="/core" component={BladeCore}/>
-        <Route exact path="/make" component={MakeNewLight}/>
+        <Route exact path="/make" component={MakeNewStick}/>
       </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>

@@ -1,15 +1,13 @@
 import {Color} from 'react-color';
 
-class Stick{
-    ID: number;
+class Light{
     Name: string;
     Color: Color;
     
     constructor(
-        ID: number,
         Name: string,
         Color: Color,
-    ){this.ID=ID;this.Name=Name;this.Color=Color;}
+    ){this.Name=Name;this.Color=Color;}
 }
 
-export default Stick;
+export default Light;

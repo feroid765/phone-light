@@ -1,12 +1,12 @@
 import React from 'react';
 import {IonItem, IonLabel} from '@ionic/react';
-import Stick from './Stick';
+import Light from './Light';
 
-class StickCollection{
+class Stick{
     constructor(
         readonly ID: string,
         readonly Name: string,
-        readonly StickList: Stick[]
+        readonly LightList: Light[]
     ){};
 
     getComponent(): JSX.Element {
@@ -20,4 +20,4 @@ class StickCollection{
     }
 }
 
-export default StickCollection;
+export default Stick;

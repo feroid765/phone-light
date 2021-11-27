@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { IonContent, IonHeader, IonLabel, IonPage, IonTitle, IonToolbar, IonItem, IonIcon } from '@ionic/react';
 import { addOutline } from 'ionicons/icons';
-import StickCollection from '../models/StickCollection';
+import Stick from '../models/Stick';
 
 const MyLights: React.FC = () => {
-  const [myLightsData, setMyLightsData] = useState<StickCollection[]>([new StickCollection("1", "러브라이브", []), new StickCollection("2", "아이돌마스터", [])]);
+  const [myLightsData, setMyLightsData] = useState<Stick[]>([new Stick("1", "러브라이브", []), new Stick("2", "아이돌마스터", [])]);
 
   return (
     <IonPage>
