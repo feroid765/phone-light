@@ -1,25 +1,55 @@
 import React, { useState } from 'react';
-import { IonContent, IonHeader, IonLabel, IonPage, IonTitle, IonToolbar, IonItem, IonList, IonListHeader, IonInput, IonIcon, IonModal } from '@ionic/react';
-import { SketchPicker, ColorResult, Color} from 'react-color';
+import { IonContent, IonHeader, IonLabel, IonPage, IonTitle, IonToolbar, IonItem, IonList, IonListHeader, IonInput, IonIcon, IonModal, IonButton } from '@ionic/react';
+import { HexColorPicker } from 'react-colorful';
 import Stick from '../models/Stick';
 import Light from '../models/Light';
-import { addOutline } from 'ionicons/icons';
+import { addOutline, closeOutline } from 'ionicons/icons';
 import ColorChip from '../components/ColorChip';
+import { validateHexColor } from '../Common';
 
 import './MakeNewStick.css';
+import { InputChangeEventDetail } from '@ionic/core';
 
-const AddSingleLightModal: React.FC<{isOpen: boolean, closeCallback: Function, addSingleLight: (name: string, color: Color)=>void}> = ({isOpen, closeCallback, addSingleLight}) => {
-  const [lightColor, setLightColor] = useState<string>("#000000");
+const AddSingleLightModal: React.FC<{isOpen: boolean, closeCallback: Function, addSingleLight: (name: string, color: string)=>void}> = ({isOpen, closeCallback, addSingleLight}) => {
+  const [lightColor, setLightColor] = useState("#000000");
   const [lightName, setLightName] = useState<string>("");
+
+  const onColorInputChange = (e: CustomEvent<InputChangeEventDetail>) => {
+    let value = e.detail.value;
+    if(value == null || value == undefined || !validateHexColor(value)) setLightColor(lightColor);
+    else setLightColor(value);
+  }
+
+  const onNameInputChange = (e: CustomEvent<InputChangeEventDetail>) => {
+    let value = e.detail.value;
+    if(value == null || value == undefined) return;
+    else setLightName(value);
+  }
+
+  const onAddClick = () => {
+    addSingleLight(lightName, lightColor);
+    closeCallback();
+  }
 
   return (
     <IonContent>
       <IonModal isOpen={isOpen}>
         <IonContent>
           <IonToolbar>
-            <IonTitle>추가할 색깔 고르기</IonTitle>
+            <IonIcon icon={closeOutline} slot="start" onClick={(e)=>closeCallback()}/>
+            <IonTitle>색깔 추가하기</IonTitle>
           </IonToolbar>
-          <SketchPicker disableAlpha={true} presetColors={[]} width="90%" color={lightColor} onChangeComplete={color => setLightColor(color.hex)}/>
+            <IonItem style={{background:"#ff0000"}}>
+              <IonLabel className="inputLabel">색깔 이름</IonLabel>
+              <IonInput value={lightName} onIonChange={onNameInputChange} placeholder="캐릭터 이름 등을 넣으세요!"/>
+            </IonItem>
+            <IonItem>
+              <IonLabel className="inputLabel">폰광봉 색깔</IonLabel>
+              <IonInput value={lightColor} onIonChange={onColorInputChange}/>
+              <ColorChip color={lightColor}/>
+            </IonItem>
+            <HexColorPicker id="colorPicker" color={lightColor} onChange={setLightColor}/>
+            <IonButton expand="block" onClick={onAddClick}>추가하기</IonButton>
         </IonContent>
       </IonModal>
     </IonContent>
@@ -28,9 +58,9 @@ const AddSingleLightModal: React.FC<{isOpen: boolean, closeCallback: Function, a
 
 const MakeNewStick: React.FC = () => {
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
-  const [newStick, setNewStick] = useState<Stick>(new Stick("", "", [new Light("오사키 아마나", '#F53C71')]));
+  const [newStick, setNewStick] = useState<Stick>(new Stick("", "", []));
   
-  const addSingleLight: (name: string, color: Color) => void = (name, color) => {
+  const addSingleLight: (name: string, color: string) => void = (name, color) => {
     let newLight = new Light(name, color);
     let tmpStick = newStick;
     tmpStick.LightList.push(newLight);

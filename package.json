@@ -23,7 +23,7 @@
     "color": "^4.0.1",
     "ionicons": "^5.4.0",
     "react": "^17.0.1",
-    "react-color": "^2.19.3",
+    "react-colorful": "^5.5.1",
     "react-dom": "^17.0.1",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
@@ -69,8 +69,7 @@
   },
   "devDependencies": {
     "@capacitor/cli": "3.3.1",
-    "@types/color": "^3.0.2",
-    "@types/react-color": "^3.0.6"
+    "@types/color": "^3.0.2"
   },
   "description": "An Ionic project"
 }

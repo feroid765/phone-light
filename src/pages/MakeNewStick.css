@@ -13,3 +13,8 @@ ion-list-header, .inputLabel{
     font-size: medium !important;
     font-weight: bold;
 }
+
+#colorPicker {
+  padding: 5px 10px 0px 10px;
+  width: 100%;
+}

@@ -1,12 +1,10 @@
-import {Color} from 'react-color';
-
 class Light{
     Name: string;
-    Color: Color;
+    Color: string;
     
     constructor(
         Name: string,
-        Color: Color,
+        Color: string,
     ){this.Name=Name;this.Color=Color;}
 }
 

@@ -1,7 +1,6 @@
 import React from 'react';
-import {Color} from 'react-color';
 
-const ColorChip: React.FC<{color: Color}> = ({color}) => {
+const ColorChip: React.FC<{color: string}> = ({color}) => {
     return (
         <div className="colorChip" style={{backgroundColor: color.toString()}}/>
     );
