@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { IonContent, IonHeader, IonLabel, IonPage, IonTitle, IonToolbar, IonItem, IonList, IonListHeader, IonInput, IonIcon, IonModal, IonButton } from '@ionic/react';
+import {Storage} from '@ionic/storage';
 import { HexColorPicker } from 'react-colorful';
 import Stick from '../models/Stick';
 import Light from '../models/Light';
@@ -16,13 +17,13 @@ const AddSingleLightModal: React.FC<{isOpen: boolean, closeCallback: Function, a
 
   const onColorInputChange = (e: CustomEvent<InputChangeEventDetail>) => {
     let value = e.detail.value;
-    if(value == null || value == undefined || !validateHexColor(value)) setLightColor(lightColor);
+    if(value === null || value === undefined || !validateHexColor(value)) setLightColor(lightColor);
     else setLightColor(value);
   }
 
   const onNameInputChange = (e: CustomEvent<InputChangeEventDetail>) => {
     let value = e.detail.value;
-    if(value == null || value == undefined) return;
+    if(value === null || value === undefined) return;
     else setLightName(value);
   }
 
@@ -49,7 +50,7 @@ const AddSingleLightModal: React.FC<{isOpen: boolean, closeCallback: Function, a
               <ColorChip color={lightColor}/>
             </IonItem>
             <HexColorPicker id="colorPicker" color={lightColor} onChange={setLightColor}/>
-            <IonButton expand="block" onClick={onAddClick}>추가하기</IonButton>
+            <IonButton expand="block" onClick={onAddClick}>색깔 추가하기</IonButton>
         </IonContent>
       </IonModal>
     </IonContent>
@@ -66,7 +67,25 @@ const MakeNewStick: React.FC = () => {
     tmpStick.LightList.push(newLight);
     setNewStick(tmpStick);
     setModalIsOpen(false);
-  }
+  };
+
+  const saveNewStick = async () => {
+    const storage = new Storage();
+    await storage.create();
+
+    let storageKeys = await storage.keys();
+    let max = -1;
+    for(let storageKey of storageKeys){
+      if(storageKey.startsWith("stick_")){
+        let lightIndex = parseInt(storageKey.substring(6));
+        if(lightIndex !== undefined && lightIndex > max) max = lightIndex;
+      }
+    }
+
+    newStick.ID = (max + 1).toString();
+    await storage.set(`stick_${newStick.ID}`, newStick);
+    document.location = "/home/my-lights";
+  };
 
   return (
     <IonPage>
@@ -94,9 +113,11 @@ const MakeNewStick: React.FC = () => {
           }
           <IonItem onClick={()=>setModalIsOpen(true)}>
             <IonIcon icon={addOutline}/>
-            <IonLabel>추가하기</IonLabel>
+            <IonLabel>색깔 추가하기</IonLabel>
           </IonItem>
         </IonList>
+
+        <IonButton expand="block" onClick={saveNewStick}>추가하기</IonButton>
         <AddSingleLightModal isOpen={modalIsOpen} closeCallback={()=>setModalIsOpen(false)} addSingleLight={addSingleLight}/>
       </IonContent>
     </IonPage>

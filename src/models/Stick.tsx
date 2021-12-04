@@ -1,13 +1,16 @@
-import React from 'react';
 import {IonItem, IonLabel} from '@ionic/react';
 import Light from './Light';
 
 class Stick{
+    ID: string;
+    Name: string;
+    LightList: Light[];
+
     constructor(
-        readonly ID: string,
-        readonly Name: string,
-        readonly LightList: Light[]
-    ){};
+        ID: string,
+        Name: string,
+        LightList: Light[]
+    ){this.ID = ID;this.Name = Name;this.LightList = LightList;}
 
     getComponent(): JSX.Element {
         return (
