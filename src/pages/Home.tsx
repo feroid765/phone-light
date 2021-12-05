@@ -1,5 +1,4 @@
 import { Redirect, Route } from 'react-router-dom';
-import { IonReactRouter } from '@ionic/react-router';
 import { IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel, IonRouterOutlet } from '@ionic/react';
 import { sparklesOutline, globeOutline } from 'ionicons/icons';
 import './Home.css';

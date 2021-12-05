@@ -69,6 +69,16 @@ const MakeNewStick: React.FC = () => {
     setModalIsOpen(false);
   };
 
+  const onNameChange: (e: CustomEvent<InputChangeEventDetail>) => void = (e) => {
+    let value = e.detail.value;
+    if(value === null || value === undefined) return;
+    else{
+      let tmpStick = newStick;
+      tmpStick.Name = value;
+      setNewStick(tmpStick);
+    }
+  };
+
   const saveNewStick = async () => {
     const storage = new Storage();
     await storage.create();
@@ -92,13 +102,14 @@ const MakeNewStick: React.FC = () => {
       <IonContent fullscreen>
         <IonHeader translucent>
           <IonToolbar>
+            <IonIcon icon={closeOutline} slot="start" onClick={()=>document.location="/home/my-lights"}/>
             <IonTitle>내 폰광봉 만들기</IonTitle>
           </IonToolbar>
         </IonHeader>
         <IonList>
           <IonItem style={{background:"#ff0000"}}>
             <IonLabel className="inputLabel">폰광봉 이름</IonLabel>
-            <IonInput placeholder="내 폰광봉"></IonInput>
+            <IonInput placeholder="내 폰광봉" onIonChange={onNameChange}></IonInput>
           </IonItem>
           <IonListHeader>
             폰광봉 색깔

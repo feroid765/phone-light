@@ -1,4 +1,4 @@
-import {IonItem, IonLabel} from '@ionic/react';
+import {IonItem, IonLabel, IonButtons, IonButton} from '@ionic/react';
 import Light from './Light';
 
 class Stick{
@@ -12,12 +12,17 @@ class Stick{
         LightList: Light[]
     ){this.ID = ID;this.Name = Name;this.LightList = LightList;}
 
-    getComponent(): JSX.Element {
+    getComponent(deleteCallback: Function | null = null): JSX.Element {
         return (
-            <IonItem href={`/core/${this.ID}`} key={this.ID}>
+            <IonItem href={deleteCallback === null ? `/core/${this.ID}` : undefined} key={this.ID}>
                 <IonLabel>
                     {this.Name}
                 </IonLabel>
+                {deleteCallback !== null ?
+                    <IonButtons slot="end">
+                        <IonButton color="danger" onClick={() => deleteCallback(this.ID)}>삭제</IonButton>
+                    </IonButtons>
+                : <></>}
             </IonItem>
         );
     }

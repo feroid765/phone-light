@@ -1,7 +1,8 @@
 import { Redirect, Route } from 'react-router-dom';
-import { IonApp, IonRouterOutlet, IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel } from '@ionic/react';
+import { IonApp, IonRouterOutlet } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import React from 'react';
+import 'reflect-metadata';
 import BladeCore from './pages/BladeCore';
 import Home from './pages/Home';
 import MakeNewStick from './pages/MakeNewStick';
@@ -31,7 +32,7 @@ const App: React.FC = () => (
       <IonRouterOutlet>
         <Redirect exact from="/" to="/home"/>
         <Route path="/home" component={Home}/>
-        <Route exact path="/core" component={BladeCore}/>
+        <Route path="/core/:id" component={BladeCore}/>
         <Route exact path="/make" component={MakeNewStick}/>
       </IonRouterOutlet>
     </IonReactRouter>
